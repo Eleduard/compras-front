@@ -3,7 +3,10 @@ import { Producto } from "./Producto";
 
 export class Compra extends Base {
 	fecha: Date = new Date();
-	precio: number = 0;
-	cantidad: number = 0;
-	productos: Producto[] = []
+}
+
+const aliasAtributos: Record<keyof (Base & Compra), string> = {
+	id: "Id",
+	eliminado: "Eliminado",
+	fecha: "Fecha de compra"
 }

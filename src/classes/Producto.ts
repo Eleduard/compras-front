@@ -7,7 +7,15 @@ import { UnidadMedida } from "./UnidadMedida";
 export class Producto extends Base {
   nombreProducto: string = "";
   subcategoria: Subcategoria | null = null;
-  compras: Compra[] = [];
   marca: Marca | null = null;
   unidadMedida: UnidadMedida | null = null;
+}
+
+const aliasAtributos: Record<keyof (Base & Producto), string> = {
+  id: "Id",
+  subcategoria: "Subcategoría",
+  nombreProducto: "Nombre",
+  marca: "Marca",
+  unidadMedida: "U. M.",
+  eliminado: "Eliminado" 
 }
