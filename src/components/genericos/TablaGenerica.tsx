@@ -7,7 +7,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React, { useState, ChangeEvent, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useFetch } from "../../hooks/useFetch";
 
 type AtributosConTiposYAlias<T> = {
@@ -17,7 +17,6 @@ type AtributosConTiposYAlias<T> = {
 type TablaGenericaProps<T extends object> = {
   constructor: new () => T;
   alias: Record<keyof T, string>;
-  onSubmit: (valores: T) => void;
   url: string | URL | Request;
   camposAMostrar?: (keyof T)[];
 };
@@ -30,46 +29,31 @@ function obtenerNombresYTipos<T extends object>(
   return Object.keys(obj)
     .filter((key) => !camposAMostrar || camposAMostrar.includes(key as keyof T))
     .map((key) => ({
-    nombre: key as keyof T,
-    tipo: typeof (obj as any)[key],
-    alias: alias[key as keyof T],
-  }));
+      nombre: key as keyof T,
+      tipo: typeof (obj as any)[key],
+      alias: alias[key as keyof T],
+    }));
 }
 
 export function TablaGenerica<T extends object>({
   constructor,
   alias,
-  onSubmit,
   url,
-  camposAMostrar
+  camposAMostrar,
 }: TablaGenericaProps<T>) {
   const instancia = new constructor();
   const [valores, setValores] = useState<T[]>([]);
-	const fetchValues = useFetch(url);
+  const fetchValues = useFetch(url);
+  const atributos = obtenerNombresYTipos(instancia, alias, camposAMostrar);
 
   useEffect(() => {
-		
-		if(fetchValues.data) {
-			setValores(fetchValues.data);
-		} else {
-			console.log(fetchValues.error)
-		}
-		}, [fetchValues.data, fetchValues.error]);
-
-  /*const handleChange = (evento: ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = evento.target;
-    setValores((prevValores) => ({
-      ...prevValores,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
-
-  const manejarEnvio = (evento: React.FormEvent) => {
-    evento.preventDefault();
-    onSubmit(valores);
-  };*/
-
-  const atributos = obtenerNombresYTipos(instancia, alias, camposAMostrar);
+    try {
+      console.log("Recuperando datos: ", fetchValues)
+      fetchValues.data && setValores(fetchValues.data);
+    } catch {
+      console.error(fetchValues.error);
+    }
+  }, [fetchValues.data, fetchValues.error]);
 
   return (
     <TableContainer component={Paper}>

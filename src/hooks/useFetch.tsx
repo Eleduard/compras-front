@@ -13,9 +13,7 @@ export const useFetch = (url: string | URL | Request) => {
           throw {
             err: true,
             status: resp.status,
-            statusText: !resp.statusText
-              ? "Error desconocido"
-              : resp.statusText,
+            statusText: resp.statusText || "Error desconocido"
           };
         }
 
@@ -24,13 +22,13 @@ export const useFetch = (url: string | URL | Request) => {
         setData(datos);
         setPendiente(false);
       } catch (err) {
-        setPendiente(true);
+        setPendiente(false);
         setError(err);
       }
     }
 
     getData(url);
-  }, [url]);
+  }, []);
 
   return { data, pendiente, error };
 };

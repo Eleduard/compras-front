@@ -1,8 +1,8 @@
 import { Base } from "../classes/Base";
 import { Categoria } from "../classes/Categoria";
-import { FormularioGenerico } from "./genericos/GenericForm";
+import { FormularioGenerico } from "./genericos/FormGenerico";
 
-const aliasAtributos: Record<keyof (Base & Categoria), string> = {
+const aliasAtributos: Record<keyof (Categoria), string> = {
     id: "Id",
     eliminado: "Eliminado",
     nombreCategoria: "Nombre"
@@ -11,6 +11,7 @@ const aliasAtributos: Record<keyof (Base & Categoria), string> = {
 export const FormularioCategoria = () => {
     const categoria1 = new Categoria();
     return(
-        <FormularioGenerico instancia={categoria1} alias={aliasAtributos} onSubmit={() => console.log("Hola")} />
+        <FormularioGenerico instancia={categoria1} alias={aliasAtributos} onSubmit={() => console.log("Hola")}
+        camposAMostrar={["nombreCategoria"]} />
     )
 }

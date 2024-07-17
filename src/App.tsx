@@ -1,9 +1,8 @@
 import './App.css'
-import { Base } from './classes/Base'
 import { Categoria } from './classes/Categoria'
 import { Marca } from './classes/Marca'
 import { FormularioCategoria } from './components/FormularioCategoria'
-import { TablaGenerica } from './components/genericos/GenericGrid'
+import { TablaGenerica } from './components/genericos/TablaGenerica'
 
 function App() {
   const aliasCategoria: Record<keyof Categoria, string> = {
@@ -21,9 +20,10 @@ function App() {
   return (
     <>
       <TablaGenerica constructor={Categoria} alias={aliasCategoria} url={"http://localhost:8080/categorias"} 
-      onSubmit={() => console.log("Hola")} camposAMostrar={["nombreCategoria"]}/>
+      camposAMostrar={["nombreCategoria"]}/>
       <TablaGenerica constructor={Marca} alias={aliasMarca} url={"http://localhost:8080/marcas"}
-      onSubmit={() => console.log("Hola")} camposAMostrar={["nombreMarca"]} />
+      camposAMostrar={["nombreMarca"]} />
+      <FormularioCategoria />
     </>
   )
 }
