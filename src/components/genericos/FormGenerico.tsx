@@ -1,13 +1,5 @@
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  Grid,
-  Input,
-  TextField,
-  Typography,
-} from "@mui/material";
 import React, { useState, ChangeEvent } from "react";
+import { Button, Container, Form } from "react-bootstrap";
 
 type AtributosConTiposYAlias<T> = {
   [K in keyof T]: { nombre: K; tipo: string; alias: string };
@@ -41,6 +33,7 @@ export function FormularioGenerico<T extends object>({
   camposAMostrar,
 }: FormularioGenericoProps<T>) {
   const [valores, setValores] = useState(instancia);
+  const atributos = obtenerNombresYTipos(instancia, alias, camposAMostrar);
 
   const manejarCambio = (evento: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = evento.target;
@@ -55,36 +48,24 @@ export function FormularioGenerico<T extends object>({
     onSubmit(valores);
   };
 
-  const atributos = obtenerNombresYTipos(instancia, alias, camposAMostrar);
-
   return (
-    <Box sx={{
-      maxWidth: 400,
-      maxHeight: 200,
-      marginX: 50
-    }}>
-      <Typography variant="h2" component="header" mb={5} maxWidth="sm">
-        {instancia.constructor.name}
-      </Typography>
-
-      {atributos.reverse().map(({ nombre, tipo, alias }) => (
-        
-          <Grid container direction="row" spacing={2} justifyContent="center">
-            <Grid item>
-              {tipo === "boolean" ? (
-                <>
-                  <Typography variant="body1" component="label">
-                    ¿{alias}?
-                  </Typography>
-                  <Checkbox value={false} aria-label={alias} />
-                </>
-              ) : (
-                <Input error={false} name={alias} />
-              )}
-            </Grid>
-          </Grid>
-        
-      ))}
-    </Box>
+    <Container>
+      <header className="h2">{instancia.constructor.name}</header>
+      <Form onSubmit={manejarEnvio}>
+        {atributos.reverse().map(({ nombre, tipo, alias }) => (
+          <Form.Group className="col-4 mb-2" key={nombre.toString()}>
+            {tipo === "boolean" ? (
+              <Form.Check type="checkbox" label={alias} name={nombre.toString()} checked={(valores as any)[nombre]} onChange={manejarCambio} />
+            ) : (
+              <>
+                <Form.Label>{alias}</Form.Label>
+                <Form.Control type={alias} name={nombre.toString()} value={(valores as any)[nombre]} onChange={manejarCambio} />
+              </>
+            )}
+          </Form.Group>
+        ))}
+        <Button variant="primary" type="submit">Agregar</Button>
+      </Form>
+    </Container>
   );
 }

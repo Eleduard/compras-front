@@ -1,14 +1,6 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
 import { useState, useEffect } from "react";
 import { useFetch } from "../../hooks/useFetch";
+import { Table } from "react-bootstrap";
 
 type AtributosConTiposYAlias<T> = {
   [K in keyof T]: { nombre: K; tipo: string; alias: string };
@@ -56,30 +48,26 @@ export function TablaGenerica<T extends object>({
   }, [fetchValues.data, fetchValues.error]);
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            {atributos.map(({ nombre, alias }) => (
-              <TableCell key={nombre.toString()}>{alias}</TableCell>
+    
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            {atributos.reverse().map(({ nombre, alias }) => (
+              <th key={nombre.toString()}>{alias}</th>
             ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {valores.map((row, rowIndex) => (
-            <TableRow
-              key={rowIndex}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
+          </tr>
+        </thead>
+        <tbody>
+          {valores.reverse().map((row, rowIndex) => (
+            <tr key={rowIndex}>
               {atributos.map(({ nombre }) => (
-                <TableCell key={nombre.toString()}>
+                <td key={nombre.toString()}>
                   {(row as any)[nombre]}
-                </TableCell>
+                </td>
               ))}
-            </TableRow>
+            </tr>
           ))}
-        </TableBody>
+        </tbody>
       </Table>
-    </TableContainer>
   );
 }

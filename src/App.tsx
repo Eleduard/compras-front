@@ -1,4 +1,4 @@
-import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Categoria } from './classes/Categoria'
 import { Marca } from './classes/Marca'
 import { FormularioCategoria } from './components/FormularioCategoria'
@@ -20,6 +20,7 @@ function App() {
   return (
     <>
       <FormularioCategoria />
+      <TablaGenerica constructor={Categoria} alias={aliasCategoria} url="http://localhost:8080/categorias" camposAMostrar={["nombreCategoria", "eliminado"]}/>
     </>
   )
 }
