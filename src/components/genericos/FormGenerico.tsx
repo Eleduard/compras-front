@@ -1,4 +1,12 @@
-import { Dialog, DialogContent, DialogTitle, TextField } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  FormControl,
+  Grid,
+  Input,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState, ChangeEvent } from "react";
 
 type AtributosConTiposYAlias<T> = {
@@ -30,7 +38,7 @@ export function FormularioGenerico<T extends object>({
   instancia,
   alias,
   onSubmit,
-  camposAMostrar
+  camposAMostrar,
 }: FormularioGenericoProps<T>) {
   const [valores, setValores] = useState(instancia);
 
@@ -50,38 +58,33 @@ export function FormularioGenerico<T extends object>({
   const atributos = obtenerNombresYTipos(instancia, alias, camposAMostrar);
 
   return (
-    <Dialog maxWidth="sm" fullWidth open={false}>
-      <DialogTitle>{instancia.constructor.name}</DialogTitle>
-      <DialogContent>
-        {
-          atributos.map(({ nombre, tipo, alias }) => {
-            <TextField autoFocus margin="dense" id={nombre.toString()} label={alias} type={tipo === "boolean" ? "checkbox" : "text"} fullWidth value={tipo === "boolean" ? undefined : (valores as any)[nombre]} onChange={manejarCambio} />
-          })
-        }
-      </DialogContent>
-    </Dialog>
-    
+    <Box sx={{
+      maxWidth: 400,
+      maxHeight: 200,
+      marginX: 50
+    }}>
+      <Typography variant="h2" component="header" mb={5} maxWidth="sm">
+        {instancia.constructor.name}
+      </Typography>
+
+      {atributos.reverse().map(({ nombre, tipo, alias }) => (
+        
+          <Grid container direction="row" spacing={2} justifyContent="center">
+            <Grid item>
+              {tipo === "boolean" ? (
+                <>
+                  <Typography variant="body1" component="label">
+                    ¿{alias}?
+                  </Typography>
+                  <Checkbox value={false} aria-label={alias} />
+                </>
+              ) : (
+                <Input error={false} name={alias} />
+              )}
+            </Grid>
+          </Grid>
+        
+      ))}
+    </Box>
   );
 }
-
-/*
-<form onSubmit={manejarEnvio}>
-      {atributos.map(({ nombre, tipo, alias }) => (
-        <div key={String(nombre)}>
-          <label>
-            {alias}:
-            <input
-              type={tipo === "boolean" ? "checkbox" : "text"}
-              name={String(nombre)}
-              value={tipo === "boolean" ? undefined : (valores as any)[nombre]}
-              checked={
-                tipo === "boolean" ? (valores as any)[nombre] : undefined
-              }
-              onChange={manejarCambio}
-            />
-          </label>
-        </div>
-      ))}
-      <button type="submit">Enviar</button>
-    </form>
-     */

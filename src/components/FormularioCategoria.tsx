@@ -12,6 +12,6 @@ export const FormularioCategoria = () => {
     const categoria1 = new Categoria();
     return(
         <FormularioGenerico instancia={categoria1} alias={aliasAtributos} onSubmit={() => console.log("Hola")}
-        camposAMostrar={["nombreCategoria"]} />
+        camposAMostrar={["eliminado", "nombreCategoria"]} />
     )
 }

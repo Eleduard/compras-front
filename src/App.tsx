@@ -19,10 +19,6 @@ function App() {
 
   return (
     <>
-      <TablaGenerica constructor={Categoria} alias={aliasCategoria} url={"http://localhost:8080/categorias"} 
-      camposAMostrar={["nombreCategoria"]}/>
-      <TablaGenerica constructor={Marca} alias={aliasMarca} url={"http://localhost:8080/marcas"}
-      camposAMostrar={["nombreMarca"]} />
       <FormularioCategoria />
     </>
   )
