@@ -1,5 +1,21 @@
 import { Categoria } from "../classes/Categoria";
 
+export const getCategoriaXId = async (id: number): Promise<Categoria> => {
+	try {
+		const resp = await fetch("http://localhost:8080/categorias/" + id);
+
+		if(!resp.ok) {
+			throw new Error("No se encuentra el registro.");
+		}
+
+		const categoria = await resp.json()
+		return categoria
+	} catch (error) {
+		console.error(error);
+		throw error;
+	}
+}
+
 export const crearCategoria = async (
   nuevaCategoria: Categoria
 ): Promise<void> => {

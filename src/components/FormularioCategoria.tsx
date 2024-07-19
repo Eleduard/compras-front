@@ -9,7 +9,7 @@ const aliasAtributos: Record<keyof (Categoria), string> = {
 }
 
 export const FormularioCategoria = () => {
-    const categoria1 = new Categoria();
+    const categoria = new Categoria();
 
     const manejarEnvio = async (valores: Categoria) => {
         await crearCategoria(valores);
@@ -17,7 +17,7 @@ export const FormularioCategoria = () => {
     }
 
     return(
-        <FormularioGenerico instancia={categoria1} alias={aliasAtributos} onSubmit={manejarEnvio}
+        <FormularioGenerico instancia={categoria} alias={aliasAtributos} onSubmit={manejarEnvio}
         camposAMostrar={["eliminado", "nombreCategoria"]} />
     )
 }

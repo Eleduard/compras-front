@@ -3,6 +3,7 @@ import { Categoria } from './classes/Categoria'
 import { Marca } from './classes/Marca'
 import { FormularioCategoria } from './components/FormularioCategoria'
 import { TablaGenerica } from './components/genericos/TablaGenerica'
+import { FormularioSubcategoria } from './components/FormularioSubcategoria';
 
 function App() {
   const aliasCategoria: Record<keyof Categoria, string> = {
@@ -20,6 +21,7 @@ function App() {
   return (
     <>
       <FormularioCategoria />
+      <FormularioSubcategoria />
       <TablaGenerica constructor={Categoria} alias={aliasCategoria} url="http://localhost:8080/categorias" camposAMostrar={["nombreCategoria", "eliminado"]}/>
     </>
   )
