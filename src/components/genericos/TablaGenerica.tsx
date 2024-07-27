@@ -48,7 +48,6 @@ export function TablaGenerica<T extends object>({
   }, [fetchValues.data, fetchValues.error]);
 
   return (
-    
       <Table striped bordered hover>
         <thead>
           <tr>
