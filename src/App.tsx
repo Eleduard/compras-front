@@ -4,6 +4,7 @@ import { Marca } from './classes/Marca'
 import { FormularioCategoria } from './components/FormularioCategoria'
 import { TablaGenerica } from './components/genericos/TablaGenerica'
 import { FormularioSubcategoria } from './components/FormularioSubcategoria';
+import { FormularioMarca } from './components/FormularioMarca';
 
 function App() {
   const aliasCategoria: Record<keyof Categoria, string> = {
@@ -22,6 +23,7 @@ function App() {
     <>
       <FormularioCategoria />
       <FormularioSubcategoria />
+      <FormularioMarca />
       <TablaGenerica constructor={Categoria} alias={aliasCategoria} url="http://localhost:8080/categorias" camposAMostrar={["nombreCategoria", "eliminado"]}/>
     </>
   )

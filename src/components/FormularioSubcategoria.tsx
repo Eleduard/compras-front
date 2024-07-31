@@ -9,9 +9,9 @@ import { useFetch } from "../hooks/useFetch";
 import { getCategoriaXId } from "../services/CategoriaService";
 
 export const FormularioSubcategoria = () => {
+  const instSubcategoria = new Subcategoria();
   const formulario = useForm<Subcategoria>();
   const { register, control, handleSubmit } = formulario;
-  const instSubcategoria = new Subcategoria();
 	const [categorias, setCategorias] = useState<Categoria[]>([]);
 	const fetchValues = useFetch("http://localhost:8080/categorias");
 
