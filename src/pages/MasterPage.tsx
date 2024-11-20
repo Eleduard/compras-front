@@ -1,7 +1,12 @@
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { DashboardCard } from "../components/Card";
+import { Container, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
+import React, { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 
-export function MasterPage() {
+interface MasterPageProps {
+  children?: ReactNode;
+}
+
+export const MasterPage: React.FC<MasterPageProps> = () => {
   return (
     <Container fluid>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -10,10 +15,12 @@ export function MasterPage() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#inicio">Inicio</Nav.Link>
+              <Nav.Link href="/inicio">Inicio</Nav.Link>
               <Nav.Link href="#link">Cargar compra</Nav.Link>
               <NavDropdown title="Configuración" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Agregar categoría</NavDropdown.Item>
+                <NavDropdown.Item href="/formcategoria">
+                  Agregar categoría
+                </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Agregar marca
                 </NavDropdown.Item>
@@ -29,7 +36,9 @@ export function MasterPage() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <DashboardCard />
+      <Row className="p-5">
+        <Outlet />
+      </Row>
     </Container>
   );
-}
+};

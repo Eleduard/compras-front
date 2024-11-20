@@ -59,7 +59,7 @@ export function FormularioGenerico<T extends object>({
             ) : (
               <>
                 <Form.Label>{alias}</Form.Label>
-                <Form.Control type={alias} name={nombre.toString()} value={(valores as any)[nombre]} onChange={manejarCambio} />
+                <Form.Control type={tipo==='number' ? 'number' : 'text'} name={nombre.toString()} value={(valores as any)[nombre]} onChange={manejarCambio} />
               </>
             )}
           </Form.Group>
