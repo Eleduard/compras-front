@@ -1,7 +1,6 @@
 import { Container, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import React, { ReactNode } from "react";
-import { Outlet } from "react-router-dom";
-import { DashboardCard } from "../components/Card";
+import { Tarjeta } from "../components/Card";
 
 interface MasterPageProps {
   children?: ReactNode;
@@ -37,9 +36,6 @@ export const MasterPage: React.FC<MasterPageProps> = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Row className="p-5">
-        <DashboardCard />
-      </Row>
     </Container>
   );
 };

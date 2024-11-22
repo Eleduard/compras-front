@@ -4,7 +4,8 @@ import { Marca } from "./classes/Marca";
 import { MasterPage } from "./pages/MasterPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { FormularioCategoria } from "./components/FormularioCategoria";
-import { DashboardCard } from "./components/Card";
+import { Tarjeta } from "./components/Card";
+import { Inicio } from "./pages/Inicio";
 
 function App() {
   const aliasCategoria: Record<keyof Categoria, string> = {
@@ -21,9 +22,10 @@ function App() {
 
   return (
     <Router>
+      <MasterPage />
       <Routes>
-        <Route path="/" element={<MasterPage />}>
-          <Route path="/inicio" element={<DashboardCard />} />
+        <Route path="/" element={<Inicio />}>
+          <Route path="/inicio" element={<Inicio />} />
           <Route path="/formcategoria" element={<FormularioCategoria />} />
         </Route>
       </Routes>
