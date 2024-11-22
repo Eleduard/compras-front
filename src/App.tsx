@@ -4,7 +4,6 @@ import { Marca } from "./classes/Marca";
 import { MasterPage } from "./pages/MasterPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { FormularioCategoria } from "./components/FormularioCategoria";
-import { Tarjeta } from "./components/Card";
 import { Inicio } from "./pages/Inicio";
 
 function App() {

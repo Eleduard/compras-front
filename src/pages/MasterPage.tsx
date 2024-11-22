@@ -36,6 +36,10 @@ export const MasterPage: React.FC<MasterPageProps> = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <Row className="p-5">
+      <Tarjeta imagen="public/pexels-anna-nekrashevich-6801648.jpg" titulo="Dashboard" texto="Some quick example text to build on the card title and make up the
+          bulk of the card's content."/>
+      </Row>
     </Container>
   );
 };
