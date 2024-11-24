@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import React, { ReactNode } from "react";
 import { Tarjeta } from "../components/Card";
+import { Outlet } from "react-router-dom";
 
 interface MasterPageProps {
   children?: ReactNode;
@@ -37,8 +38,7 @@ export const MasterPage: React.FC<MasterPageProps> = () => {
         </Container>
       </Navbar>
       <Row className="p-5">
-      <Tarjeta imagen="public/pexels-anna-nekrashevich-6801648.jpg" titulo="Dashboard" texto="Some quick example text to build on the card title and make up the
-          bulk of the card's content."/>
+        <Outlet />
       </Row>
     </Container>
   );

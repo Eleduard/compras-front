@@ -21,10 +21,9 @@ function App() {
 
   return (
     <Router>
-      <MasterPage />
       <Routes>
-        <Route path="/" element={<Inicio />}>
-          <Route path="/inicio" element={<Inicio />} />
+        <Route path="/" element={<MasterPage />}>
+          <Route index element={<Inicio />} />
           <Route path="/formcategoria" element={<FormularioCategoria />} />
         </Route>
       </Routes>
