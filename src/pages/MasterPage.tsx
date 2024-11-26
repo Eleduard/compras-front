@@ -1,6 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import React, { ReactNode } from "react";
-import { Tarjeta } from "../components/Card";
 import { Outlet } from "react-router-dom";
 
 interface MasterPageProps {
@@ -22,7 +21,7 @@ export const MasterPage: React.FC<MasterPageProps> = () => {
                 <NavDropdown.Item href="/formcategoria">
                   Agregar categoría
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item href="/formmarca">
                   Agregar marca
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">

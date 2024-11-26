@@ -5,6 +5,7 @@ import { MasterPage } from "./pages/MasterPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { FormularioCategoria } from "./components/FormularioCategoria";
 import { Inicio } from "./pages/Inicio";
+import { FormularioMarca } from "./components/FormularioMarca";
 
 function App() {
   const aliasCategoria: Record<keyof Categoria, string> = {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<MasterPage />}>
           <Route index element={<Inicio />} />
           <Route path="/formcategoria" element={<FormularioCategoria />} />
+          <Route path="/formmarca" element={<FormularioMarca />} />
         </Route>
       </Routes>
     </Router>
