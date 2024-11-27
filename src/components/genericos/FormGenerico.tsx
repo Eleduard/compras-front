@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 type AtributosConTiposYAlias<T> = {
   [K in keyof T]: { nombre: K; tipo: string; alias: string };
@@ -25,6 +26,8 @@ function obtenerNombresYTipos<T extends object>(
       alias: alias[key as keyof T],
     }));
 }
+
+const { register, formState: {errors}, handleSubmit } = useForm();
 
 export function FormularioGenerico<T extends object>({
   instancia,

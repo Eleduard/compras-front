@@ -1,14 +1,13 @@
 import { useForm } from "react-hook-form";
 import { Marca } from "../classes/Marca";
 import { crearMarca } from "../services/MarcaService";
-import { FormularioGenerico } from "./genericos/FormGenerico";
 import { Button, Form } from "react-bootstrap";
 
-const aliasAtributos: Record<keyof (Marca), string> = {
+/*const aliasAtributos: Record<keyof (Marca), string> = {
     id: "Id",
     eliminado: "Eliminado",
     nombreMarca: "Nombre"
-}
+}*/
 
 export const FormularioMarca = () => {
     //const marca = new Marca();
@@ -24,13 +23,12 @@ export const FormularioMarca = () => {
         <Form onSubmit={handleSubmit(manejarEnvio)}>
             <Form.Group>
                 <Form.Label>Marca</Form.Label>
-                <Form.Control type="text" { ...register('nombreMarca') }></Form.Control>
+                <Form.Control type="text" { ...register('nombreMarca', {required: true}) }></Form.Control>
+                {errors?.nombreMarca && <p><small>Campo requerido.</small></p>}
                 <Form.Label>¿Eliminar?</Form.Label>
                 <Form.Check { ...register('eliminado') }/>
             </Form.Group>
             <Button variant="primary" type="submit">Agregar</Button>
         </Form>
-        /*<FormularioGenerico instancia={marca} alias={aliasAtributos} onSubmit={manejarEnvio}
-        camposAMostrar={["eliminado", "nombreMarca"]} />*/
     )
 }
