@@ -27,7 +27,7 @@ function obtenerNombresYTipos<T extends object>(
     }));
 }
 
-const { register, formState: {errors}, handleSubmit } = useForm();
+//const { register, formState: {errors}, handleSubmit } = useForm();
 
 export function FormularioGenerico<T extends object>({
   instancia,
