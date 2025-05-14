@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Lista } from "../classes/Lista";
+import { aliasAtributos, Lista } from "../classes/Lista";
 import { Alert } from "react-bootstrap";
 import { FormularioGenerico } from "./genericos/FormGenerico";
+import { crearLista } from "../services/ListaService";
 
 export const FormularioLista = () => {
   const [mensaje, setMensaje] = useState<string | null>(null);
@@ -28,7 +29,7 @@ export const FormularioLista = () => {
         instancia={lista}
         alias={aliasAtributos}
         onSubmit={manejarEnvio}
-        camposAMostrar={["eliminado", "fecha"]}
+        camposAMostrar={["eliminado", "fecha", "detalle"]}
       />
     </div>
   );

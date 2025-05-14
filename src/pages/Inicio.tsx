@@ -1,6 +1,7 @@
 import { Col } from "react-bootstrap";
 import { DashCard } from "../components/DashCard";
 import ListaCategorias from "../components/ListaCategorias";
+import { FormularioLista } from "../components/FormularioLista";
 
 export const Inicio = () => {
   return (
@@ -9,7 +10,7 @@ export const Inicio = () => {
         <ListaCategorias />
       </Col>
       <Col md={4}>
-        <DashCard />
+        <FormularioLista />
       </Col>
     </>
   );

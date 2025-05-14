@@ -10,7 +10,7 @@ export class DetalleLista extends Base {
     lista: Lista | null = null;
 }
 
-const aliasAtributos: Record<keyof (Base & DetalleLista), string> = {
+export const aliasAtributos: Record<keyof (Base & DetalleLista), string> = {
     id: "Id",
     eliminado: "Eliminado",
     cantidadAComprar: "Cantidad necesaria",
